@@ -17,7 +17,7 @@ export function NavBar({
       >
         Next Photos App
       </Link>
-     
+
     </nav>
   )
 }
