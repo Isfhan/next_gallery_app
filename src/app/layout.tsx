@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+
 import { NavBar } from '@/components/NavBar';
 import { SideBar } from '@/components/SideBar';
 
@@ -30,11 +31,7 @@ export default function RootLayout({
         {/* SideBar start */}
         <div className='flex'>
           <SideBar />
-
-          <div>
-
-            {children}
-          </div>
+          {children}
         </div>
 
 
