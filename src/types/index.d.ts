@@ -43,6 +43,7 @@ export interface CloudinarySearchApiResource {
   aspect_ratio: number;
   pixels: number;
   url: string;
+  tags:string[];
   secure_url: string;
   status: string;
   access_mode: string;

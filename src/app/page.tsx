@@ -14,10 +14,12 @@ export default async function Gallery() {
 
   const result: CloudinarySearchApiResponse = await cloudinary.search
     .expression("resource_type:image")
+    .with_field('tags')
     .sort_by("created_at", "desc")
     .max_results(30)
     .execute();
 
+    
   return (
 
     <main className='w-4/5 min-h-screen px-5 py-10'>
@@ -41,6 +43,7 @@ export default async function Gallery() {
               width="400"
               height="300"
               alt={imgObject.filename}
+              tags={imgObject.tags}
             />
 
           ))
