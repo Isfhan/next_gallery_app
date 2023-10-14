@@ -1,11 +1,9 @@
-// Import shadcn components
-import { Button } from "@/components/ui/button"
-
-// Import Icons
-import { ImageIcon, Folder, Heart } from "lucide-react"
+// Import custom components
+import { SideBarItems } from "./SideBarItems";
 
 // Import stuff from lib
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
+
 
 
 
@@ -25,20 +23,7 @@ export function SideBar({ className }: React.HTMLAttributes<HTMLDivElement>) {
 
           <div className="space-y-1">
 
-            <Button variant="secondary" className="w-full justify-start">
-              <ImageIcon className="pr-2" />
-              Gallery
-            </Button>
-
-            <Button variant="ghost" className="w-full justify-start">
-              <Folder className="pr-2" />
-              Albums
-            </Button>
-
-            <Button variant="ghost" className="w-full justify-start">
-              <Heart className="pr-2" />
-              Favorites
-            </Button>
+            <SideBarItems />
 
           </div>
 

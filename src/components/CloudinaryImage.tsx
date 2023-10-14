@@ -13,7 +13,8 @@ import {
 } from "@/app/actions";
 
 // Import Icons
-import { Heart, Loader } from "lucide-react"
+import { Heart, Loader } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 
 
@@ -25,26 +26,39 @@ export default function CloudinaryImage(props: CldImageProps & { tags: string[] 
   // Initialize a transition to handle asynchronous state updates
   const [isPending, startTransition] = useTransition();
 
+  const router = useRouter();
 
-  const handleHeart = (public_id: string, addImageAsFavorite: boolean) => {
+  const handleHeart = async (public_id: string, addImageAsFavorite: boolean) => {
 
     // Check favorite/unfavorite 
     if (addImageAsFavorite) {
 
-      // Set the image as a favorite
-      setImageFavorite(true);
+      startTransition(async () => {
 
-      // Start a transition to add the image as a favorite tag
-      startTransition(() => addImageAsFavoriteAction(public_id));
+        // Start a transition to add the image as a favorite tag
+        await addImageAsFavoriteAction(public_id);
+
+        // Set the image as a favorite
+        setImageFavorite(true);
+
+      });
+
+      router.refresh();
 
     } else {
 
-      // Set the image as a unfavorite
-      setImageFavorite(false);
 
-      // Start a transition to remove the image from favorites tag
-      startTransition(() => removeImageAsFavoriteAction(public_id));
+      startTransition(async () => {
 
+        // Start a transition to remove the image from favorites tag
+        await removeImageAsFavoriteAction(public_id);
+
+        // Set the image as a unfavorite
+        setImageFavorite(false);
+
+      });
+
+      router.refresh();
     }
 
   };
